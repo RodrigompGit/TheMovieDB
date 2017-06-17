@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22300FBA1EF5CE5C0021B640 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22300FB91EF5CE5C0021B640 /* MovieModel.swift */; };
 		413722831EE0A4EA00634980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413722821EE0A4EA00634980 /* AppDelegate.swift */; };
 		413722851EE0A4EA00634980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413722841EE0A4EA00634980 /* ViewController.swift */; };
 		413722881EE0A4EA00634980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 413722861EE0A4EA00634980 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22300FB91EF5CE5C0021B640 /* MovieModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		4137227F1EE0A4EA00634980 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		413722821EE0A4EA00634980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		413722841EE0A4EA00634980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		41A6E58B1EF49CF400380024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22300FB91EF5CE5C0021B640 /* MovieModel.swift */,
 				41A6E58E1EF49D7200380024 /* Movie.swift */,
 				41A6E5901EF49DB300380024 /* Actor.swift */,
 			);
@@ -310,6 +313,7 @@
 				413722851EE0A4EA00634980 /* ViewController.swift in Sources */,
 				41A6E5881EF4818E00380024 /* CurrentMoviesCollectionViewCell.swift in Sources */,
 				41A6E5911EF49DB300380024 /* Actor.swift in Sources */,
+				22300FBA1EF5CE5C0021B640 /* MovieModel.swift in Sources */,
 				413722831EE0A4EA00634980 /* AppDelegate.swift in Sources */,
 				41A6E5931EF59D6500380024 /* HomeViewController.swift in Sources */,
 				41A6E58F1EF49D7200380024 /* Movie.swift in Sources */,

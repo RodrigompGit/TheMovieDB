@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate {
 
+    
+    let model = MovieModel.shared
     @IBOutlet weak var homeTableView: UITableView!
     let separatorColor = UIColor(colorLiteralRed: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
 

@@ -21,5 +21,21 @@ class Movie {
         self.poster = #imageLiteral(resourceName: "teste")
     }
     
+    init(with data: Dictionary<String, AnyObject>){
+        self.title = data["original_title"] as! String
+        
+        //initialize poster if request is sucessfull
+        let posterURL =
+        URL(string: "https://image.tmdb.org/t/p/w185" + (data["poster_path"] as! String) )
+        
+        if let posterData = try? Data(contentsOf: posterURL!) {
+            
+            self.poster = UIImage(data: posterData)
+            
+        } else {
+            print("error initializing poster")
+        }
+    }
+    
     
 }
