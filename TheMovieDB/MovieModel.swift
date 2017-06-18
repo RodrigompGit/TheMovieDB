@@ -18,13 +18,13 @@ class MovieModel {
         }
     }
     
-    let api_key = "7ee9b443aa187e3537589cc0b8a80a8b&language"
+    private let api_key = "7ee9b443aa187e3537589cc0b8a80a8b&language"
     
     var nowPlaying: [Movie] = []
     var upcoming: [Movie] = []
     var popular: [Movie] = []
     
-    func load(response: @escaping (Void) -> Void ){
+    private func load(response: @escaping (Void) -> Void ){
         self.loadNowPlaying(result: { self.nowPlaying = $0 })
         self.loadUpcoming(result: { self.upcoming = $0 })
         self.loadPopular(result: {
@@ -36,7 +36,7 @@ class MovieModel {
     
     
     
-    func loadUpcoming(result: @escaping ([Movie]) -> Void) {
+    private func loadUpcoming(result: @escaping ([Movie]) -> Void) {
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=\(self.api_key)&language=en-US&page=1")!
         
@@ -72,7 +72,7 @@ class MovieModel {
         }.resume()
     }
     
-    func loadNowPlaying(result: @escaping ([Movie]) -> Void){
+    private func loadNowPlaying(result: @escaping ([Movie]) -> Void){
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(self.api_key)&language=en-US&page=1")!
         
@@ -108,7 +108,7 @@ class MovieModel {
         }.resume()
     }
     
-    func loadPopular(result: @escaping ([Movie]) -> Void){
+    private func loadPopular(result: @escaping ([Movie]) -> Void){
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(self.api_key)&language=en-US&page=1")!
         
         let request = URLRequest(url: url)

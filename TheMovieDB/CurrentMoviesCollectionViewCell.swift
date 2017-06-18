@@ -11,6 +11,8 @@ import UIKit
 class CurrentMoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var currentMovie: UIImageView!
+    // name label
+    // date label
     
     var movie : Movie!{
         didSet {

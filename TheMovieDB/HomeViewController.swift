@@ -8,19 +8,22 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     let model = MovieModel.shared
+    
     @IBOutlet weak var homeTableView: UITableView!
+    
     let separatorColor = UIColor(colorLiteralRed: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.homeTableView.delegate = self
-        
-        }
+        self.homeTableView.dataSource = self
+        sleep(5)
+    }
     
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +36,22 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell")!
+        var cell: UITableViewCell
+        
+        switch indexPath.section {
+        case 1:
+            cell =
+            tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+            (cell as! CurrentMoviesTableViewCell).movies = model.nowPlaying
+        case 2:
+            cell =
+            tableView.dequeueReusableCell(withIdentifier: "potraitUpcomingTableViewCell") as! potraitTableViewCell
+            (cell as! potraitTableViewCell).movies = model.upcoming
+        default:
+            cell =
+            tableView.dequeueReusableCell(withIdentifier: "potraitPopularTableViewCell") as! potraitTableViewCell
+            (cell as! potraitTableViewCell).movies = model.popular
+        }
         
         return cell
     }

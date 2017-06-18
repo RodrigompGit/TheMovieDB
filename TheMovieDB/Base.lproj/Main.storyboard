@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LKb-cl-Ix9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LKb-cl-Ix9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +52,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="89M-wx-ov3">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teste" translatesAutoresizingMaskIntoConstraints="NO" id="89M-wx-ov3">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -94,7 +94,7 @@
                                             <outlet property="pageControl" destination="LRZ-0o-oDT" id="9Q0-nd-uhs"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="TKD-SC-9AF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="potraitUpcomingTableViewCell" rowHeight="235" id="TKD-SC-9AF" userLabel="upcomingTableViewCell" customClass="potraitTableViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="279" width="375" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TKD-SC-9AF" id="OsQ-aT-kuM">
@@ -105,19 +105,43 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="234.5"/>
                                                     <color key="backgroundColor" red="0.98566478489999998" green="0.7585226893" blue="0.57534563540000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HL7-9O-8au">
-                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="itemSize" width="161" height="234.5"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9op-SI-FY6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="potraitMovieCell" id="9op-SI-FY6" customClass="potraitCollectionViewCell" customModule="TheMovieDB" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="161" height="234.5"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="234.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teste2" translatesAutoresizingMaskIntoConstraints="NO" id="Wp8-7N-PG8" userLabel="posterImage">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="161" height="234.5"/>
+                                                                    </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="COn-4C-Izt" userLabel="alreadyWatchedIcon">
+                                                                        <rect key="frame" x="8" y="204.5" width="24" height="24"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="24" id="VzS-Nw-CHO"/>
+                                                                            <constraint firstAttribute="height" constant="24" id="hld-JU-dH4"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
                                                             </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="COn-4C-Izt" secondAttribute="bottom" constant="6" id="4Us-eH-4FA"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Wp8-7N-PG8" secondAttribute="bottom" id="go4-h7-yDH"/>
+                                                                <constraint firstItem="Wp8-7N-PG8" firstAttribute="leading" secondItem="9op-SI-FY6" secondAttribute="leading" id="ovh-dc-RPI"/>
+                                                                <constraint firstItem="COn-4C-Izt" firstAttribute="leading" secondItem="9op-SI-FY6" secondAttribute="leading" constant="8" id="qqw-Vv-PT7"/>
+                                                                <constraint firstItem="Wp8-7N-PG8" firstAttribute="top" secondItem="9op-SI-FY6" secondAttribute="top" id="ucZ-EB-nVh"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Wp8-7N-PG8" secondAttribute="trailing" id="utA-gd-FdK"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="alreadyWatchedIcon" destination="COn-4C-Izt" id="yqJ-2g-2d0"/>
+                                                                <outlet property="poster" destination="Wp8-7N-PG8" id="yNw-OU-yN4"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -130,7 +154,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dkl-6W-qTq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="potraitPopularTableViewCell" id="dkl-6W-qTq" userLabel="popularTableViewCell" customClass="potraitTableViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="514" width="375" height="251"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dkl-6W-qTq" id="aq9-te-AgH">
@@ -179,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911.2" y="38.23088455772114"/>
+            <point key="canvasLocation" x="1910.5" y="37.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S9G-ci-MbF">
@@ -219,4 +243,8 @@
             <point key="canvasLocation" x="972" y="38.23088455772114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="teste" width="375" height="214"/>
+        <image name="teste2" width="558" height="224"/>
+    </resources>
 </document>
