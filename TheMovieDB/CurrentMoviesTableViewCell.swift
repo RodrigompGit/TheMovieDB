@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate {
+class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var currentMoviesCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -18,7 +18,8 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate {
         super.awakeFromNib()
         
         self.currentMoviesCollectionView.delegate = self
-        //self.currentMoviesCollectionView.dataSource = self
+        self.currentMoviesCollectionView.dataSource = self
+        
         self.currentMoviesCollectionView.showsVerticalScrollIndicator = false
         self.currentMoviesCollectionView.showsHorizontalScrollIndicator = false
         
@@ -30,7 +31,7 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -46,6 +47,8 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentMoviesCollectionViewCell", for: indexPath) as! CurrentMoviesCollectionViewCell
+        
+        cell.backgroundColor = UIColor.blue
         
         if indexPath.row < self.pageControl.numberOfPages {
             cell.movie = self.movies[indexPath.row]

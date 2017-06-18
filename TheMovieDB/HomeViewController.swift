@@ -39,11 +39,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell: UITableViewCell
         
         switch indexPath.section {
-        case 1:
+        case 0:
             cell =
             tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
             (cell as! CurrentMoviesTableViewCell).movies = model.nowPlaying
-        case 2:
+        case 1:
             cell =
             tableView.dequeueReusableCell(withIdentifier: "potraitUpcomingTableViewCell") as! potraitTableViewCell
             (cell as! potraitTableViewCell).movies = model.upcoming
