@@ -15,8 +15,12 @@ class potraitTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.upcomingMoviesCollectionView.delegate = self
-//        self.upcomingMoviesCollectionView.dataSource = self
+        
+        self.upcomingMoviesCollectionView.delegate = self
+        self.upcomingMoviesCollectionView.dataSource = self
+        
+        self.upcomingMoviesCollectionView.showsVerticalScrollIndicator = false
+        self.upcomingMoviesCollectionView.showsHorizontalScrollIndicator = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,14 +31,14 @@ class potraitTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 0//movies.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "potraitCollectionViewCell", for: indexPath) as! potraitCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "potraitMovieCell", for: indexPath) as! potraitCollectionViewCell
         
-        cell.backgroundColor = UIColor.blue
+        cell.movie = movies[indexPath.row]
         
         return cell
     }

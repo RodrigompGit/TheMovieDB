@@ -9,23 +9,23 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     
     let model = MovieModel.shared
     
     @IBOutlet weak var homeTableView: UITableView!
     
     let separatorColor = UIColor(colorLiteralRed: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
-        sleep(5)
+        sleep(15)
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,23 +34,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         
         switch indexPath.section {
         case 0:
             cell =
-            tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
             (cell as! CurrentMoviesTableViewCell).movies = model.nowPlaying
         case 1:
             cell =
-            tableView.dequeueReusableCell(withIdentifier: "potraitUpcomingTableViewCell") as! potraitTableViewCell
+                tableView.dequeueReusableCell(withIdentifier: "potraitUpcomingTableViewCell") as! potraitTableViewCell
             (cell as! potraitTableViewCell).movies = model.upcoming
         default:
-            cell =
-            tableView.dequeueReusableCell(withIdentifier: "potraitPopularTableViewCell") as! potraitTableViewCell
-            (cell as! potraitTableViewCell).movies = model.popular
+            cell = tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell")!
+            //            tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+            //            (cell as! potraitTableViewCell).movies = model.popular
         }
         
         return cell
@@ -60,9 +60,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 3
     }
     
-
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title = ""
+        switch section {
+        case 1:
+            title = "Upcoming"
+            break
+        case 2:
+            title = "Popular"
+            break
+        default:
+            break
+        }
+        return title
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let title = UILabel()
+        
+        title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
+        
+//        title.textAlignment = NSTextAlignmentCenter;
+        
+        //    title.backgroundColor = [UIColor blueColor];
+        
+        return title;
+    }
     
     
-
-
+    
+    
+    
+    
 }
