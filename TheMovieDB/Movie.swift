@@ -12,6 +12,7 @@ class Movie {
 
     var title : String!
     var poster : UIImage?
+    var backdrop : UIImage?
     var actors : [Actor]?
     var releaseDate : Date?
     var categories : [String]?
@@ -34,6 +35,20 @@ class Movie {
             
         } else {
             print("error initializing poster")
+        }
+        
+        //load backdrop
+        if let path = (data["backdrop_path"] as? String) {
+                let backdropURL =
+                URL(string: "https://image.tmdb.org/t/p/w780" + path )
+            
+                if let backdropData = try? Data(contentsOf: backdropURL!) {
+                    self.backdrop = UIImage(data: backdropData)
+                } else {
+                    print("erro")
+                }
+        } else {
+            self.backdrop = self.poster
         }
     }
     
