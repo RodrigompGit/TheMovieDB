@@ -16,7 +16,7 @@ class CurrentMoviesCollectionViewCell: UICollectionViewCell {
     
     var movie : Movie!{
         didSet {
-            currentMovie.image = self.movie.poster
+            currentMovie.image = self.movie.backdrop
         }
     }
     
