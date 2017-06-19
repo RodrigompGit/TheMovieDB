@@ -24,7 +24,7 @@ class PopularMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
         self.upcomingMoviesCollectionView.showsVerticalScrollIndicator = false
         self.upcomingMoviesCollectionView.showsHorizontalScrollIndicator = false
         
-        print("space = \(upcomingMoviesCollectionView.spa)")
+       // print("space = \(upcomingMoviesCollectionView.spa)")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
