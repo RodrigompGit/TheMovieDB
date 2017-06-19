@@ -23,12 +23,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
         
-//        self.homeTableView.estimatedRowHeight = 234.5
-//        self.homeTableView.rowHeight = UITableViewAutomaticDimension
         self.homeTableView.separatorColor = self.separatorColor
         
         
-        sleep(15)
+        while true {
+            if MovieModel.shared.didLoad { break }
+        }
     }
     
     
@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             cell =
                 tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
-            (cell as! CurrentMoviesTableViewCell).movies = model.nowPlaying
+            (cell as! CurrentMoviesTableViewCell).movies = self.model.nowPlaying
         case 1:
             cell =
                 tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
@@ -101,27 +101,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return title;
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            let cell =
-                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
-            return cell.frame.size.height
-        case 1:
-            let cell =
-                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
-            return cell.frame.size.height
-        default:
-            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
-            var height = lines * 234.5
-            height += (lines-1) * 11
-            return height
-        }
-    }
-    
-    
-    
-    
-    
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch indexPath.section {
+//        case 0:
+//            let cell =
+//                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+//            return cell.frame.size.height
+//        case 1:
+//            let cell =
+//                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
+//            return cell.frame.size.height
+//        default:
+//            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
+//            var height = lines * 234.5
+//            height += (lines-1) * 11
+//            return height
+//        }
+//    }
 }

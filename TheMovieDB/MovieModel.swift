@@ -14,7 +14,8 @@ class MovieModel {
     
     private init() {
         self.load {
-            print("loaded all movie lists")
+            self.didLoad = true
+            print("loaded all movies")
         }
     }
     
@@ -24,20 +25,29 @@ class MovieModel {
     var upcoming: [Movie] = []
     var popular: [Movie] = []
     
+    var didLoad = false
+    var loaded = 0
+    
     private func load(response: @escaping (Void) -> Void ){
-        self.loadIDs(for: "now_playing", result: { self.loadMovies(with: $0, result: { self.nowPlaying = $0 }) })
+        self.loadIDs(for: "now_playing") { self.loadMovies(with: $0, result: { self.nowPlaying = $0 }) }
         sleep(1)
-        self.loadIDs(for: "popular", result: { self.loadMovies(with: $0, result: { self.popular = $0 }) })
+        self.loadIDs(for: "popular") { self.loadMovies(with: $0, result: { self.popular = $0 }) }
         sleep(1)
-        self.loadIDs(for: "upcoming", result: {
-            self.loadMovies(with: $0, result: { self.upcoming = $0 })
-            response()
-        })
+        self.loadIDs(for: "upcoming") { self.loadMovies(with: $0) { self.upcoming = $0 } }
+        
+        // wait for all ids to be loaded
+        while true {
+            if loaded >= 3 {
+                response()
+                break
+            }
+        }
     }
     
     
-    private func loadMovies(with idList: [String], result: ([Movie])->Void ){
+    private func loadMovies(with idList: [String], result: @escaping ([Movie])->Void ){
         var answer : [Movie] = []
+        var goal = idList.count
         
         for id in idList {
             usleep(100) // 40 requests /s
@@ -60,9 +70,15 @@ class MovieModel {
                     print(error)
                 }
                 
+                //wait for all movies to be loaded before returning the result
+                goal -= 1
+                if goal == 0 {
+                    self.loaded += 1
+                    result(answer)
+                }
+                
             }.resume()
         }
-        result(answer)
     }
     
     private func loadIDs(for category: String, result: @escaping ([String]) -> Void) {
