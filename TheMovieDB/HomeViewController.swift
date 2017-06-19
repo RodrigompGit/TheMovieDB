@@ -55,8 +55,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             (cell as! UpcomingMoviesTableViewCell).movies = model.upcoming
         default:
             cell =
-                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
-            (cell as! UpcomingMoviesTableViewCell).movies = model.popular
+                tableView.dequeueReusableCell(withIdentifier: "PopularMoviesTableViewCell") as! PopularMoviesTableViewCell
+            (cell as! PopularMoviesTableViewCell).movies = model.popular
+            
+            cell.frame.size.height = 700
         }
         
         return cell
@@ -85,12 +87,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let title = UILabel()
         
         title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
-        
-//        title.textAlignment = NSTextAlignmentCenter;
-        
-        //    title.backgroundColor = [UIColor blueColor];
-        
         return title;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+            return cell.frame.size.height
+        case 1:
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
+            return cell.frame.size.height
+        default:
+            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
+            var height = lines * 234.5
+            height += (lines-1) * 11
+            return height
+        }
     }
     
     

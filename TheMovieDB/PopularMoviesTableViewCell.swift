@@ -23,6 +23,8 @@ class PopularMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
         
         self.upcomingMoviesCollectionView.showsVerticalScrollIndicator = false
         self.upcomingMoviesCollectionView.showsHorizontalScrollIndicator = false
+        
+        print("space = \(upcomingMoviesCollectionView.spa)")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,7 +40,7 @@ class PopularMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingMoviesCollectionViewCell", for: indexPath) as! UpcomingMoviesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMoviesCollectionViewCell", for: indexPath) as! PopularMoviesCollectionViewCell
         
         cell.movie = movies[indexPath.row]
         
