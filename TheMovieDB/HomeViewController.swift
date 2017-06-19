@@ -25,6 +25,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 //        self.homeTableView.estimatedRowHeight = 234.5
 //        self.homeTableView.rowHeight = UITableViewAutomaticDimension
+        self.homeTableView.separatorColor = self.separatorColor
+        
         
         sleep(15)
     }
