@@ -8,20 +8,39 @@
 
 import UIKit
 
-class potraitTableViewCell: UITableViewCell {
+class potraitTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //TODO: implement collectionView protocols
+    @IBOutlet weak var upcomingMoviesCollectionView: UICollectionView!
     var movies: [Movie] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        self.upcomingMoviesCollectionView.delegate = self
+//        self.upcomingMoviesCollectionView.dataSource = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 0//movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "potraitCollectionViewCell", for: indexPath) as! potraitCollectionViewCell
+        
+        cell.backgroundColor = UIColor.blue
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
     }
 
 }

@@ -48,8 +48,6 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentMoviesCollectionViewCell", for: indexPath) as! CurrentMoviesCollectionViewCell
         
-        cell.backgroundColor = UIColor.blue
-        
         if indexPath.row < self.pageControl.numberOfPages {
             cell.movie = self.movies[indexPath.row]
         }
