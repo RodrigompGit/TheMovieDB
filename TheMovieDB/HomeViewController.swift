@@ -84,9 +84,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+       // var view = UIView()
         let title = UILabel()
         
+        //let viewBackGround = UIImageView()
+        //viewBackGround.image = UIImage(contentsOfFile: "Scream")
+        
         title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
+
+        title.textColor = UIColor.white
+
+        //view = title
+        //view = viewBackGround
+    
         return title;
     }
     
