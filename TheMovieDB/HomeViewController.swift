@@ -22,6 +22,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
+        
+//        self.homeTableView.estimatedRowHeight = 234.5
+//        self.homeTableView.rowHeight = UITableViewAutomaticDimension
+        
         sleep(15)
     }
     
@@ -45,12 +49,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             (cell as! CurrentMoviesTableViewCell).movies = model.nowPlaying
         case 1:
             cell =
-                tableView.dequeueReusableCell(withIdentifier: "potraitUpcomingTableViewCell") as! potraitTableViewCell
-            (cell as! potraitTableViewCell).movies = model.upcoming
+                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
+            (cell as! UpcomingMoviesTableViewCell).movies = model.upcoming
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell")!
-            //            tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
-            //            (cell as! potraitTableViewCell).movies = model.popular
+            cell =
+                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
+            (cell as! UpcomingMoviesTableViewCell).movies = model.popular
         }
         
         return cell
