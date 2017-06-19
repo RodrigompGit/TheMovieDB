@@ -26,22 +26,16 @@ class MovieModel {
     var popular: [Movie] = []
     
     var didLoad = false
-    var loaded = 0
     
     private func load(response: @escaping (Void) -> Void ){
         self.loadIDs(for: "now_playing") { self.loadMovies(with: $0, result: { self.nowPlaying = $0 }) }
         sleep(1)
         self.loadIDs(for: "popular") { self.loadMovies(with: $0, result: { self.popular = $0 }) }
         sleep(1)
-        self.loadIDs(for: "upcoming") { self.loadMovies(with: $0) { self.upcoming = $0 } }
-        
-        // wait for all ids to be loaded
-        while true {
-            if loaded >= 3 {
-                response()
-                break
-            }
-        }
+        self.loadIDs(for: "upcoming") { self.loadMovies(with: $0) {
+            self.upcoming = $0
+            response()
+        } }
     }
     
     
@@ -73,7 +67,6 @@ class MovieModel {
                 //wait for all movies to be loaded before returning the result
                 goal -= 1
                 if goal == 0 {
-                    self.loaded += 1
                     result(answer)
                 }
                 
