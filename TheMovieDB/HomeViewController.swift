@@ -92,6 +92,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //viewBackGround.image = UIImage(contentsOfFile: "Scream")
         
         title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
+        
+        title.backgroundColor = UIColor.init(red: 7.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1.0)
 
         title.textColor = UIColor.white
 
