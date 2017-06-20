@@ -19,6 +19,7 @@ class Movie {
     var rating : Int?
     var genres : [String]?
     var actors : [Actor]? //TODO
+    //TODO: short description
     
     init(with data: Dictionary<String, AnyObject>){
         
@@ -30,15 +31,13 @@ class Movie {
         
         //load poster
         if let path = (data["poster_path"] as? String) {
-            
-            let posterURL = URL(string: "https://image.tmdb.org/t/p/w185" + path )
+            let posterURL = URL(string: "https://image.tmdb.org/t/p/original" + path )
             loadImage(at: posterURL!, response: { self.poster = $0 })
         }
         
         //load backdrop
         if let path = (data["backdrop_path"] as? String) {
-            
-            let backdropURL = URL(string: "https://image.tmdb.org/t/p/w780" + path )
+            let backdropURL = URL(string: "https://image.tmdb.org/t/p/original" + path )
             loadImage(at: backdropURL!, response: { self.backdrop = $0 })
         }
         
