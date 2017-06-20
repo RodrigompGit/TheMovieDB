@@ -17,9 +17,10 @@ class Movie {
     var releaseDate : String?
     var runtime : Int?
     var rating : Int?
+    var overview : String? //TODO
     var genres : [String]?
     var actors : [Actor]? //TODO
-    //TODO: short description
+    //TODO: trailer
     
     init(with data: Dictionary<String, AnyObject>){
         
@@ -54,6 +55,11 @@ class Movie {
         //load rating
         if let rating = data["vote_average"] as? Int {
             self.rating = rating
+        }
+        
+        //load overview
+        if let overview = data["overview"] as? String {
+            self.overview = overview
         }
         
         //load genres
