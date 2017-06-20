@@ -10,26 +10,53 @@ import UIKit
 
 struct Movie {
 
+    //core
     var data : Dictionary<String, AnyObject>
-    
     var id : String!
     var title : String!
     
-    //this
+    
+    //images
     lazy var poster : UIImage? = {
-        print("loaded poster")
-        return self.loadImage(at: self.data["poster_path"] as? String)
+       return self.loadImage(at: self.data["poster_path"] as? String, resolution: "w780")
     }()
     
-    var backdrop : UIImage?
-    var releaseDate : String?
-    var runtime : Int?
-    var rating : Int?
-    var overview : String?
-    var genres : [String]?
+    lazy var backdrop : UIImage? = {
+        return self.loadImage(at: self.data["backdrop_path"] as? String , resolution: "w780")
+    }()
+    
+    //details screen
+    lazy var releaseDate : String? = {
+        return self.data["release_date"] as? String ?? nil
+    }()
+    
+    lazy var runtime : Int? = {
+        return self.data["runtime"] as? Int ?? nil
+    }()
+    
+    lazy var rating : Int? = {
+       return self.data["vote_average"] as? Int ?? nil
+    }()
+    
+    lazy var overview : String? = {
+        return self.data["overview"] as? String ?? nil
+    }()
+    
+    lazy var genres : [String]? = {
+        if let genres = self.data["genres"] as? [Dictionary<String, Any>] {
+            var answer : [String] = []
+            for genre in genres{
+                answer.append( genre["name"] as! String )
+            }
+            return answer
+        }else{
+            return nil
+        }
+    }()
     lazy var actors : [Actor]? = {
         return self.loadActors()
     }()
+    
     //TODO: trailer
     
     private func loadActors() -> [Actor] {
@@ -79,46 +106,8 @@ struct Movie {
     }
     
     init(with data: Dictionary<String, AnyObject>){
-        
         self.data = data
-        
-        //initialize non optional variables
         self.id = (data["id"] as! Int).description
         self.title = data["original_title"] as! String
-        
-        //initialize optional variables
-        
-        
-        //or this?
-        //load backdrop
-        self.backdrop = loadImage(at: data["backdrop_path"] as? String)
-        
-        //load release date
-        if let release = data["release_date"] as? String {
-            self.releaseDate = release
-        }
-        
-        //load runtime
-        if let runtime = data["runtime"] as? Int {
-            self.runtime = runtime
-        }
-        
-        //load rating
-        if let rating = data["vote_average"] as? Int {
-            self.rating = rating
-        }
-        
-        //load overview
-        if let overview = data["overview"] as? String {
-            self.overview = overview
-        }
-        
-        //load genres
-        if let genres = data["genres"] as? [Dictionary<String, Any>] {
-            self.genres = []
-            for genre in genres{
-                self.genres?.append( genre["name"] as! String )
-            }
-        }
     }
 }
