@@ -92,6 +92,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //viewBackGround.image = UIImage(contentsOfFile: "Scream")
         
         title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
+        
+        title.backgroundColor = UIColor.init(red: 7.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1.0)
 
         title.textColor = UIColor.white
 
@@ -101,21 +103,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return title;
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        switch indexPath.section {
-//        case 0:
-//            let cell =
-//                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
-//            return cell.frame.size.height
-//        case 1:
-//            let cell =
-//                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
-//            return cell.frame.size.height
-//        default:
-//            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
-//            var height = lines * 234.5
-//            height += (lines-1) * 11
-//            return height
-//        }
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "CurrentMoviesTableViewCell") as! CurrentMoviesTableViewCell
+            return cell.frame.size.height
+        case 1:
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
+            return cell.frame.size.height
+        default:
+            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
+            var height = lines * 234.5
+            height += (lines-1) * 11
+            return height
+        }
+    }
 }

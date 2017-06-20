@@ -13,9 +13,11 @@ class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var alreadyWatchedIcon: UIImageView!
     
+    @IBOutlet weak var movieTitle: UILabel!
     var movie : Movie!{
         didSet {
             self.poster.image = movie.poster
+            self.movieTitle.text = movie.title
         }
     }
     
