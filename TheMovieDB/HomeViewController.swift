@@ -25,12 +25,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.homeTableView.separatorColor = self.separatorColor
         
-        
         while true {
             if MovieModel.shared.didLoad { break }
         }
-        
-        print("endddddd")
     }
     
     

@@ -8,21 +8,79 @@
 
 import UIKit
 
-class Movie {
+struct Movie {
 
+    var data : Dictionary<String, AnyObject>
+    
     var id : String!
     var title : String!
-    var poster : UIImage?
+    
+    //this
+    lazy var poster : UIImage? = {
+        print("loaded poster")
+        return self.loadImage(at: self.data["poster_path"] as? String)
+    }()
+    
     var backdrop : UIImage?
     var releaseDate : String?
     var runtime : Int?
     var rating : Int?
-    var overview : String? //TODO
+    var overview : String?
     var genres : [String]?
-    var actors : [Actor]? //TODO
+    lazy var actors : [Actor]? = {
+        return self.loadActors()
+    }()
     //TODO: trailer
     
+    private func loadActors() -> [Actor] {
+        var loaded = false
+        var actors : [Actor] = []
+        let url =
+        URL(string: "https://api.themoviedb.org/3/movie/\(self.id!)/credits?api_key=\(MovieModel.shared.api_key)")!
+        
+        let request = URLRequest(url: url)
+        let session = URLSession.shared
+        
+        session.dataTask(with: request) { (data, response, error) in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                
+                if let jsonData = json as? Dictionary<String, AnyObject> {
+                    if let cast = jsonData["cast"] as? [Dictionary<String, AnyObject>] {
+                        for actorData in cast {
+                            actors.append( Actor(with: actorData) )
+                        }
+                    }
+                }
+            } catch let error {
+                print("error: \(error)")
+            }
+            loaded = true
+        }.resume()
+        
+        while true {
+            if loaded { break }
+        }
+        
+        return actors
+    }
+    
+    private func loadImage(at path: String?, resolution: String = "original") -> UIImage? {
+        
+        if path == nil { return nil }
+        
+        let url = URL(string: "https://image.tmdb.org/t/p/\(resolution)" + path! )
+        
+        if let data = try? Data(contentsOf: url!) {
+            return UIImage(data: data)
+        } else {
+            return nil
+        }
+    }
+    
     init(with data: Dictionary<String, AnyObject>){
+        
+        self.data = data
         
         //initialize non optional variables
         self.id = (data["id"] as! Int).description
@@ -30,17 +88,10 @@ class Movie {
         
         //initialize optional variables
         
-        //load poster
-        if let path = (data["poster_path"] as? String) {
-            let posterURL = URL(string: "https://image.tmdb.org/t/p/original" + path )
-            loadImage(at: posterURL!, response: { self.poster = $0 })
-        }
         
+        //or this?
         //load backdrop
-        if let path = (data["backdrop_path"] as? String) {
-            let backdropURL = URL(string: "https://image.tmdb.org/t/p/original" + path )
-            loadImage(at: backdropURL!, response: { self.backdrop = $0 })
-        }
+        self.backdrop = loadImage(at: data["backdrop_path"] as? String)
         
         //load release date
         if let release = data["release_date"] as? String {
@@ -68,16 +119,6 @@ class Movie {
             for genre in genres{
                 self.genres?.append( genre["name"] as! String )
             }
-        }
-    }
-    
-    private func loadImage(at url: URL, response: (UIImage) -> Void) {
-        if let imageData = try? Data(contentsOf: url) {
-            
-            response(UIImage(data: imageData)!)
-            
-        } else {
-            print("error initializing image")
         }
     }
 }

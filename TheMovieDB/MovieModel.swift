@@ -19,7 +19,7 @@ class MovieModel {
         }
     }
     
-    let api_key = "7ee9b443aa187e3537589cc0b8a80a8b&language"
+    let api_key = "7ee9b443aa187e3537589cc0b8a80a8b"
     
     var nowPlaying: [Movie] = []
     var upcoming: [Movie] = []
