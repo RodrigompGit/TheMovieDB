@@ -29,6 +29,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         while true {
             if MovieModel.shared.didLoad { break }
         }
+        
+        print("endddddd")
     }
     
     
