@@ -51,7 +51,7 @@ class MovieModel {
         
         for id in idList {
             let url =
-            URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(api_key)&language=en-US")!
+            URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(api_key)&language=en-US&append_to_response=videos")!
             
             let request = URLRequest(url: url)
             let session = URLSession.shared
