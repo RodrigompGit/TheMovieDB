@@ -27,9 +27,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.homeTableView.dataSource = self
 
         //wait for model to be loaded to reload tableview
-        self.model.loadNowPlaying {
-            self.model.loadUpcoming {
-                self.model.loadPopular {
+        DispatchQueue.global().async {
+            self.model.loadNowPlaying {
+                self.model.loadUpcoming {
                     DispatchQueue.main.async { self.homeTableView.reloadData() }
                 }
             }
@@ -60,7 +60,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         default:
             cell =
                 tableView.dequeueReusableCell(withIdentifier: "PopularMoviesTableViewCell") as! PopularMoviesTableViewCell
-            (cell as! PopularMoviesTableViewCell).movies = model.popular
+            DispatchQueue.global().async {
+                self.model.loadPopular {
+                    (cell as! PopularMoviesTableViewCell).movies = self.model.popular
+                }
+            }
         }
         
         cell.selectionStyle = .none
