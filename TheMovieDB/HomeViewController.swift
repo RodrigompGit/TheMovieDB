@@ -23,42 +23,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
         
-        //self.homeTableView.separatorColor = self.separatorColor
-        
-        //wait
-        
-        MovieModel.shared.loadIDs(for: "now_playing") { (categories) in
-            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
-                MovieModel.shared.nowPlaying = movies
-                
-                DispatchQueue.main.async {
-                    self.homeTableView.reloadData()
+        //self.homeTableView.separatorColor = self.separatorColors
+
+        //wait for model to be loaded to reload tableview
+        self.model.loadNowPlaying {
+            self.model.loadUpcoming {
+                self.model.loadPopular {
+                    DispatchQueue.main.async { self.homeTableView.reloadData() }
                 }
-            })
-        }
-        
-        MovieModel.shared.loadIDs(for: "popular") { (categories) in
-            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
-                MovieModel.shared.popular = movies
-                
-                DispatchQueue.main.async {
-                    self.homeTableView.reloadData()
-                }
-            })
-        }
-        
-        
-        MovieModel.shared.loadIDs(for: "upcoming") { (categories) in
-            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
-                MovieModel.shared.upcoming = movies
-                
-                DispatchQueue.main.async {
-                    self.homeTableView.reloadData()
-                }
-            })
+            }
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,8 +60,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell =
                 tableView.dequeueReusableCell(withIdentifier: "PopularMoviesTableViewCell") as! PopularMoviesTableViewCell
             (cell as! PopularMoviesTableViewCell).movies = model.popular
-            
-            cell.frame.size.height = 700
         }
         
         return cell
@@ -142,9 +115,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 tableView.dequeueReusableCell(withIdentifier: "UpcomingMoviesTableViewCell") as! UpcomingMoviesTableViewCell
             return cell.frame.size.height
         default:
-            let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
-            var height = lines * 234.5
-            height += (lines-1) * 11
             return 2446
         }
     }

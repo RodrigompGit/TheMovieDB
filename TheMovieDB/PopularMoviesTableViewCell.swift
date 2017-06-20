@@ -13,7 +13,12 @@ import UIKit
 class PopularMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var upcomingMoviesCollectionView: UICollectionView!
-    var movies: [Movie] = []
+    
+    var movies: [Movie] = [] {
+        didSet{
+            DispatchQueue.main.async { self.upcomingMoviesCollectionView.reloadData() }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,42 +12,44 @@ class MovieModel {
     
     static var shared = MovieModel()
     
-    private init() {
-//        self.load {
-//            self.didLoad = true
-//            print("loaded all movies")
-//        }
-    }
-    
     let api_key = "7ee9b443aa187e3537589cc0b8a80a8b"
     
     var nowPlaying: [Movie] = []
     var upcoming: [Movie] = []
     var popular: [Movie] = []
     
-    var didLoad = false
+    func loadNowPlaying(completion: @escaping (Void) -> Void) {
+        self.loadIDs(for: "now_playing") {
+            self.loadMovies(with: $0) {
+                self.nowPlaying = $0
+                completion()
+            }
+        }
+    }
     
-//    private func load(response: @escaping (Void) -> Void ){
-//        
-//        DispatchQueue.main.async {
-//            self.loadIDs(for: "now_playing") { self.loadMovies(with: $0, result: { self.nowPlaying = $0 }) }
-//            sleep(1)
-//            self.loadIDs(for: "popular") { self.loadMovies(with: $0, result: { self.popular = $0 }) }
-//            sleep(1)
-//            self.loadIDs(for: "upcoming") { self.loadMovies(with: $0) {
-//                self.upcoming = $0
-//                response()
-//                } }
-//        }
-//    }
-  
+    func loadUpcoming(completion: @escaping (Void) -> Void) {
+        self.loadIDs(for: "upcoming") {
+            self.loadMovies(with: $0) {
+                self.upcoming = $0
+                completion()
+            }
+        }
+    }
+    
+    func loadPopular(completion: @escaping (Void) -> Void) {
+        self.loadIDs(for: "popular") {
+            self.loadMovies(with: $0) {
+                self.popular = $0
+                completion()
+            }
+        }
+    }
     
     public func loadMovies(with idList: [String], result: @escaping ([Movie])->Void ){
         var answer : [Movie] = []
         var goal = idList.count
         
         for id in idList {
-            usleep(300) // 40 requests /s
             let url =
             URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(api_key)&language=en-US")!
             

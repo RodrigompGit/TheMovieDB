@@ -12,7 +12,11 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
 
     @IBOutlet weak var currentMoviesCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-    var movies: [Movie] = []
+    var movies: [Movie] = [] {
+        didSet{
+            DispatchQueue.main.async { self.currentMoviesCollectionView.reloadData() }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
