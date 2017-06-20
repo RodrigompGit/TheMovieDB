@@ -57,7 +57,6 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl.currentPage = indexPath.row
-        print("\n yyy %d", indexPath.row)
     }
     
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
