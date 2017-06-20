@@ -40,7 +40,7 @@ class HeaderDetailTableViewCell: UITableViewCell {
             }
             genresUILabel.text = genres
             
-//            runtimeUILabel.text = "\(movie.runtime!/60)h \(movie.runtime! % 60)m"
+            runtimeUILabel.text = "\(movie.runtime!/60)h \(movie.runtime! % 60)m"
         }
     }
 }
