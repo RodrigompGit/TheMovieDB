@@ -25,10 +25,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //self.homeTableView.separatorColor = self.separatorColor
         
-        
-//        while true {
-//            if MovieModel.shared.didLoad { break }
-//        }
+        //wait
         
         MovieModel.shared.loadIDs(for: "now_playing") { (categories) in
             MovieModel.shared.loadMovies(with: categories, result: { (movies) in
@@ -60,8 +57,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             })
         }
-        
-        print("endddddd")
     }
     
     

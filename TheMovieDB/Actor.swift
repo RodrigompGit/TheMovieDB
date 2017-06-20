@@ -8,6 +8,16 @@
 
 import UIKit
 
-class Actor {
+struct Actor {
 
+    var name : String
+    var character : String
+    
+    init(with data: Dictionary<String, AnyObject>) {
+        
+        name = data["name"] as! String
+        character = data["character"] as! String
+        
+    }
+    
 }
