@@ -9,5 +9,9 @@
 import UIKit
 
 class WatchDetailTableViewCell: UITableViewCell {
-    
+    var movie: Movie! {
+        didSet {
+            
+        }
+    }
 }

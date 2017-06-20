@@ -10,4 +10,15 @@ import UIKit
 
 class CastCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var nameUILabel: UILabel!
+    @IBOutlet weak var characterUILabel: UILabel!
+    
+    var actor: Actor! {
+        didSet {
+            nameUILabel.text = actor.name
+            characterUILabel.text = actor.character
+        }
+    }
+    
 }

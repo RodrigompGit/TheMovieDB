@@ -9,8 +9,15 @@
 import UIKit
 
 class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    var movie: Movie! {
+        didSet {
+            cast = movie.actors!
+        }
+    }
+    
     @IBOutlet weak var castCollectionView: UICollectionView!
-    var cast: [String] = ["a", "b", "c"]
+    var cast: [Actor] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +45,7 @@ class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as! CastCollectionViewCell
-        
+        cell.actor = cast[indexPath.row]
         return cell
     }
     
