@@ -63,8 +63,8 @@ class CurrentMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UIC
         self.pageControl.currentPage = indexPath.row
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        parentViewController?.performSegue(withIdentifier: "showDetailsMovies", sender: movies[indexPath.row])
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.parentViewController?.performSegue(withIdentifier: "DetailViewController", sender: movies[indexPath.row])
+    }
 
 }

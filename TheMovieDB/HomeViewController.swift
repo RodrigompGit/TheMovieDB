@@ -15,15 +15,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var homeTableView: UITableView!
     
-    //let separatorColor = UIColor(red: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 7.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+        tabBarController?.tabBar.tintColor = UIColor.init(red: 0.0/255.0, green: 212.0/255.0, blue: 116.0/255.0, alpha: 1.0)
+        tabBarController?.tabBar.barTintColor = UIColor.white
+        
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
-        
-        //self.homeTableView.separatorColor = self.separatorColors
 
         //wait for model to be loaded to reload tableview
         DispatchQueue.global().async {
@@ -66,6 +67,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        cell.selectionStyle = .none
+        
         return cell
     }
     
@@ -89,23 +92,43 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let height = CGFloat(18)
         
-       // var view = UIView()
-        let title = UILabel()
+        let stackView = UIStackView()
+        stackView.axis = UILayoutConstraintAxis.horizontal
+        //        stackView.backgroundColor = UIColor.init(red: 7.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+        stackView.spacing = 10
+        stackView.distribution = UIStackViewDistribution.fill
+        stackView.widthAnchor.constraint(equalToConstant: self.homeTableView.frame.size.width).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: height).isActive = true
         
-        //let viewBackGround = UIImageView()
-        //viewBackGround.image = UIImage(contentsOfFile: "Scream")
+        let imageView = UIImageView(image: UIImage(named: "sectionMark"))
+        imageView.widthAnchor.constraint(equalToConstant: (imageView.image?.size.width)!).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: (imageView.image?.size.height)!).isActive = true
         
-        title.text = homeTableView.dataSource?.tableView!(homeTableView, titleForHeaderInSection: section)
-        
-        title.backgroundColor = UIColor.init(red: 7.0/255.0, green: 28.0/255.0, blue: 36.0/255.0, alpha: 1.0)
-
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: height))
+        title.text = tableView.dataSource?.tableView!(tableView, titleForHeaderInSection: section)
         title.textColor = UIColor.white
-
-        //view = title
-        //view = viewBackGround
+        title.textAlignment = .left
+        title.widthAnchor.constraint(equalToConstant: title.frame.size.width).isActive = true
+        title.heightAnchor.constraint(equalToConstant: height).isActive = true
+        
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(title)
+        
+        return stackView;
+    }
     
-        return title;
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailViewController" {
+            if let destinationViewController = segue.destination as? DetailViewController {
+                if let movie = sender as? Movie {
+                    destinationViewController.movie = movie
+                }
+            }
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

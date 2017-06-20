@@ -25,6 +25,10 @@ struct Movie {
         return self.loadImage(at: self.data["backdrop_path"] as? String , resolution: "w780")
     }()
     
+    lazy var runtime : Int? = {
+        return self.data["runtime"] as? Int
+    }()
+    
     //details screen
     var releaseDate : String?
     var rating : Int?

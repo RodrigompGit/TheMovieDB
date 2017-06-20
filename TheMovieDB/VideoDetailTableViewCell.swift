@@ -9,5 +9,9 @@
 import UIKit
 
 class VideoDetailTableViewCell: UITableViewCell {
-    
+    var movie: Movie! {
+        didSet {
+            
+        }
+    }
 }

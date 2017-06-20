@@ -10,4 +10,12 @@ import UIKit
 
 class DescriptionDetailTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var descriptionUILabel: UILabel!
+    
+    var movie: Movie! {
+        didSet {
+            descriptionUILabel.text = movie.overview
+        }
+    }
+    
 }

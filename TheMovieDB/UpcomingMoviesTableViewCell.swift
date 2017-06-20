@@ -47,8 +47,8 @@ class UpcomingMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UI
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.parentViewController?.performSegue(withIdentifier: "DetailViewController", sender: movies[indexPath.row])
     }
 
 }
