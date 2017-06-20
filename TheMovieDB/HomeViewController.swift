@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var homeTableView: UITableView!
     
-    let separatorColor = UIColor(colorLiteralRed: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
+    //let separatorColor = UIColor(red: 0.0, green: 212.0, blue: 116.0, alpha: 0.40)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
         
-        self.homeTableView.separatorColor = self.separatorColor
+        //self.homeTableView.separatorColor = self.separatorColor
         
         
-        while true {
-            if MovieModel.shared.didLoad { break }
+//        while true {
+//            if MovieModel.shared.didLoad { break }
+//        }
+        
+        MovieModel.shared.loadIDs(for: "now_playing") { (categories) in
+            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
+                MovieModel.shared.nowPlaying = movies
+                
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+                }
+            })
+        }
+        
+        MovieModel.shared.loadIDs(for: "popular") { (categories) in
+            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
+                MovieModel.shared.popular = movies
+                
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+                }
+            })
+        }
+        
+        
+        MovieModel.shared.loadIDs(for: "upcoming") { (categories) in
+            MovieModel.shared.loadMovies(with: categories, result: { (movies) in
+                MovieModel.shared.upcoming = movies
+                
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+                }
+            })
         }
         
         print("endddddd")
@@ -119,7 +150,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let lines = CGFloat( model.popular.count % 2 == 0 ? model.popular.count/2 : model.popular.count + 1)
             var height = lines * 234.5
             height += (lines-1) * 11
-            return height
+            return 2446
         }
     }
 }
