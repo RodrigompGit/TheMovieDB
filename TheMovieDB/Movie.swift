@@ -18,7 +18,7 @@ struct Movie {
     
     //images
     lazy var poster : UIImage? = {
-       return self.loadImage(at: self.data["poster_path"] as? String, resolution: "w780")
+       return self.loadImage(at: self.data["poster_path"] as? String, resolution: "w342")
     }()
     
     lazy var backdrop : UIImage? = {
