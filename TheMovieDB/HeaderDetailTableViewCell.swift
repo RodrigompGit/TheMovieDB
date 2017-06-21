@@ -22,7 +22,7 @@ class HeaderDetailTableViewCell: UITableViewCell {
     
     var movie: Movie! {
         didSet {
-            eyeWatchedOrNotWatched.isHighlighted = (movie.watched() != nil)
+            eyeWatchedOrNotWatched.isHighlighted = (WatchedModel.watchedMovie(withId: movie.id!) != nil)
             titleUILabel.text = movie.title
             posterUIImageView.image = movie.poster
             backdropUIImageView.image = movie.backdrop

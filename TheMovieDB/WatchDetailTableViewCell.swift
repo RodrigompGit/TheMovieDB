@@ -29,7 +29,7 @@ UINavigationControllerDelegate {
             let userDefaults: UserDefaults = UserDefaults.standard
             var watchedMovies = [Watched]()
             
-            if let watched = movie.watched(){
+            if let watched = WatchedModel.watchedMovie(withId: movie.id!){
                 userPhotoUIImageView.image = UIImage(data: watched.imageData as Data)
                 eyeWatchedOrNotWatched.isHighlighted = true
                 
@@ -97,35 +97,25 @@ UINavigationControllerDelegate {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            //TODO
-            //Save image
+            userPhotoUIImageView.isUserInteractionEnabled = false
+            
             self.userPhotoUIImageView.image = image
             
-            let userDefaults: UserDefaults = UserDefaults.standard
             eyeWatchedOrNotWatched.isHighlighted = true
+            
+            let date = Date()
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            let date = Date()
             watchedOrNotWatchedUILabel.text = "Você viu este filme em:\n\(dateFormatter.string(from: date))"
             
             let watched = Watched(imageData: UIImageJPEGRepresentation(image, 1)! as NSData, idFilme: movie.id!, date: date)
-            var watchedMovies = [Watched]()
             
-            userPhotoUIImageView.isUserInteractionEnabled = false
-            
-            
-            if let data = userDefaults.object(forKey: "watchedMovies") {
-                watchedMovies = (NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as? [Watched])!
-            }else{
-            }
+            var watchedMovies = WatchedModel.watchedMovies()
             
             watchedMovies.append(watched)
-            let encodedData = NSKeyedArchiver.archivedData(withRootObject: watchedMovies)
-            userDefaults.set(encodedData, forKey: "watchedMovies")
-            userDefaults.synchronize()
             
-            
-            
+            WatchedModel.updateWatchedMovies(watchedMovies: watchedMovies)
             
         }
         

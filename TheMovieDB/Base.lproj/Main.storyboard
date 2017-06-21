@@ -705,7 +705,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="fqT-p1-IN3">
                                                             <rect key="frame" x="35" y="35" width="344" height="89"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fallbackUser" translatesAutoresizingMaskIntoConstraints="NO" id="gLh-Q3-NKT">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fallbackUser" translatesAutoresizingMaskIntoConstraints="NO" id="gLh-Q3-NKT">
                                                                     <rect key="frame" x="0.0" y="0.0" width="154.66666666666666" height="89"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.83792072529999995" blue="0.43974065779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </imageView>

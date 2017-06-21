@@ -92,20 +92,4 @@ struct Movie {
             }
         }
     }
-    
-    func watched() -> Watched?{
-        let userDefaults: UserDefaults = UserDefaults.standard
-        var watchedMovies = [Watched]()
-        if let data = userDefaults.object(forKey: "watchedMovies") {
-            watchedMovies = (NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as? [Watched])!
-            
-            for watched in watchedMovies{
-                if(watched.idFilme! == self.id!){
-                    return watched
-                }
-            }
-            
-        }
-        return nil
-    }
 }
