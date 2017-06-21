@@ -470,7 +470,7 @@
                                                             <color key="textColor" red="0.0" green="0.83792072529999995" blue="0.43974065779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyeNotWatched" translatesAutoresizingMaskIntoConstraints="NO" id="S7K-rp-Jt9">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyeNotWatched" highlightedImage="eyeWatched" translatesAutoresizingMaskIntoConstraints="NO" id="S7K-rp-Jt9">
                                                             <rect key="frame" x="379" y="19" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="IeZ-79-pqC"/>
@@ -521,6 +521,7 @@
                                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="backdropUIImageView" destination="eJi-Bc-HdH" id="EnN-dA-kyw"/>
+                                            <outlet property="eyeWatchedOrNotWatched" destination="S7K-rp-Jt9" id="R7n-no-o8V"/>
                                             <outlet property="genresUILabel" destination="qYV-YZ-b6t" id="HYt-ap-nSD"/>
                                             <outlet property="posterUIImageView" destination="TdB-zG-zfT" id="XaI-6T-kPt"/>
                                             <outlet property="ratingBarUILabel" destination="Ge9-m4-F5q" id="l7x-ep-974"/>
@@ -711,7 +712,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRw-ce-8fw">
                                                                     <rect key="frame" x="189.66666666666663" y="0.0" width="154.33333333333337" height="89"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyeNotWatched" translatesAutoresizingMaskIntoConstraints="NO" id="AEJ-kH-V8y">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyeNotWatched" highlightedImage="eyeWatched" translatesAutoresizingMaskIntoConstraints="NO" id="AEJ-kH-V8y">
                                                                             <rect key="frame" x="59.000000000000028" y="5" width="35" height="35"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="35" id="3pJ-z4-m1J"/>
@@ -757,6 +758,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.02393957973" green="0.109375529" blue="0.14281299710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="eyeWatchedOrNotWatched" destination="AEJ-kH-V8y" id="6Nc-N3-JSw"/>
+                                            <outlet property="userPhotoUIImageView" destination="gLh-Q3-NKT" id="Zp5-Oi-qYk"/>
+                                            <outlet property="watchedOrNotWatchedUILabel" destination="4sC-xO-ocF" id="8PI-gC-xS7"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

@@ -10,6 +10,7 @@ import UIKit
 
 class HeaderDetailTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var eyeWatchedOrNotWatched: UIImageView!
     @IBOutlet weak var ratingUILabel: UILabel!
     @IBOutlet weak var titleUILabel: UILabel!
     @IBOutlet weak var ratingBarUILabel: NSLayoutConstraint!
@@ -21,6 +22,7 @@ class HeaderDetailTableViewCell: UITableViewCell {
     
     var movie: Movie! {
         didSet {
+            eyeWatchedOrNotWatched.isHighlighted = (movie.watched() != nil)
             titleUILabel.text = movie.title
             posterUIImageView.image = movie.poster
             backdropUIImageView.image = movie.backdrop
