@@ -11,6 +11,7 @@ import UIKit
 class CastCollectionViewCell: UICollectionViewCell {
     
     
+    @IBOutlet weak var profileUIImageview: UIImageView!
     @IBOutlet weak var nameUILabel: UILabel!
     @IBOutlet weak var characterUILabel: UILabel!
     
@@ -18,6 +19,7 @@ class CastCollectionViewCell: UICollectionViewCell {
         didSet {
             nameUILabel.text = actor.name
             characterUILabel.text = actor.character
+            profileUIImageview.image = actor.profile
         }
     }
     

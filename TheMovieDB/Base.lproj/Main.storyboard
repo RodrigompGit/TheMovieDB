@@ -663,6 +663,7 @@
                                                             <connections>
                                                                 <outlet property="characterUILabel" destination="zu8-5H-SN5" id="9DV-rH-1Jw"/>
                                                                 <outlet property="nameUILabel" destination="WFl-rM-4hB" id="QtG-AB-1Ap"/>
+                                                                <outlet property="profileUIImageview" destination="SG7-RG-hhN" id="rLd-4n-OIa"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

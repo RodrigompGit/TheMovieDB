@@ -12,7 +12,9 @@ class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     var movie: Movie! {
         didSet {
-            movie.loadActors() { self.cast = $0 }
+            if(movie.actors != nil){
+                cast = movie.actors!
+            }
         }
     }
     
@@ -27,6 +29,8 @@ class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         
         self.castCollectionView.showsVerticalScrollIndicator = false
         self.castCollectionView.showsHorizontalScrollIndicator = false
+        
+        print("Cast = \(cast.count)")
         
         // print("space = \(upcomingMoviesCollectionView.spa)")
     }

@@ -38,6 +38,7 @@ struct Movie {
     //TODO: trailer
     
     func loadActors(completion: @escaping ([Actor]) -> Void) {
+        //WIDE
         var actors : [Actor] = []
         let url =
         URL(string: "https://api.themoviedb.org/3/movie/\(self.id!)/credits?api_key=\(MovieModel.shared.api_key)")!
