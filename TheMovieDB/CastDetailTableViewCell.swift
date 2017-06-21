@@ -12,7 +12,7 @@ class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     var movie: Movie! {
         didSet {
-            cast = movie.actors!
+            movie.loadActors() { self.cast = $0 }
         }
     }
     
