@@ -122,11 +122,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailViewController" {
             if let destinationViewController = segue.destination as? DetailViewController {
+                
                 var movie = sender as? Movie
-                if(movie != nil){
-                    movie?.loadActors() { movie?.actors = $0 }
-                    destinationViewController.movie = movie
-                }
+                destinationViewController.movie = movie
+
             }
         }
         

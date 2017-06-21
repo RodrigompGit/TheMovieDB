@@ -22,6 +22,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.estimatedRowHeight = 200;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         
+        
+        if(movie != nil){
+            movie?.loadActors() { self.movie?.actors = $0 }
+        }
 //        self.navigationController?.toolbar.isTranslucent = true
         // Do any additional setup after loading the view, typically from a nib.
     }

@@ -61,8 +61,17 @@ class MovieModel {
                 do {
                     let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
                     
-                    if let data = jsonData as? Dictionary<String, AnyObject> {
-                        answer.append( Movie(with: data) )
+                    let data = jsonData as? Dictionary<String, AnyObject>
+                    if data == nil{
+                        //print("Nuloooooooooo")
+                    }
+                    else {
+                        if (data?["id"] as? Int) != nil{
+                            answer.append( Movie(with: data!) )
+                        }
+                        else{
+                            print("NULOOOOOOOOOOOOO")
+                        }
                     }
                 
                 } catch let error {
@@ -88,6 +97,8 @@ class MovieModel {
         
         let session = URLSession.shared
         
+        var verify = false
+        
         session.dataTask(with: request) { (data, response, error) in
             do {
                 
@@ -95,16 +106,59 @@ class MovieModel {
                 
                 if let dict = jsonData as? Dictionary<String, AnyObject> {
                     
-                    let dictArray = dict["results"] as! [Dictionary<String, AnyObject>]
+                    var dictArray = dict["results"] as? [Dictionary<String, AnyObject>]
                     
+                    if dictArray == nil{
+                        print("NULOOOOOOOOOOOOO2222")
+                        
+                        
+                        self.loadIDs(for: category, result: result)
+                        
+//                        while(dictArray == nil && verify == false){
+//                            let request2 = URLRequest(url: url)
+//                            
+//                            let session2 = URLSession.shared
+//                            
+//                            session2.dataTask(with: request2) { (data2, response2, error) in
+//                                do {
+//                                    let jsonData = try JSONSerialization.jsonObject(with: data!, options: [])
+//                                    
+//                                    if let dict = jsonData as? Dictionary<String, AnyObject> {
+//                                        
+//                                        dictArray = dict["results"] as? [Dictionary<String, AnyObject>]
+//                                        
+//                                        
+//                                        if dictArray == nil{
+//                                            
+//                                        }else{
+//                                            verify = true
+//                                        }
+//                                }
+//                                }catch let error {
+//                                    print(error)
+//                                }
+//                            }.resume()
+//                        }
+//                            var idList: [String] = []
+//                            
+//                            for movie in dictArray! {
+//                                idList.append( (movie["id"] as! Int).description )
+//                            }
+//                            
+//                            result(idList)
+
+                            }else{
+                    
+
                     
                     var idList: [String] = []
                     
-                    for movie in dictArray {
+                    for movie in dictArray! {
                         idList.append( (movie["id"] as! Int).description )
                     }
                     
                     result(idList)
+                    }
                     
                 }else{
                     print("couldn't convert")
@@ -113,6 +167,6 @@ class MovieModel {
             } catch let error {
                 print(error)
             }
-        }.resume()
+                }.resume()
     }
 }

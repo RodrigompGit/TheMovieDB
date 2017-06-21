@@ -13,14 +13,17 @@ struct Actor {
     var name : String
     var character : String
     var profile : UIImage?
+    var aux : Dictionary<String, AnyObject>!
     
     init(with data: Dictionary<String, AnyObject>) {
         name = data["name"] as! String
         character = data["character"] as! String
-        profile = Actor.loadImage(at: data["profile_path"] as? String, resolution: "w342")
+        
+        print("A")
+        aux = data
     }
     
-    static private func loadImage(at path: String?, resolution: String = "original") -> UIImage? {
+    static public func loadImage(at path: String?, resolution: String = "original") -> UIImage? {
         
         if path == nil { return nil }
         

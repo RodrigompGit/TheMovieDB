@@ -20,6 +20,10 @@ class CastCollectionViewCell: UICollectionViewCell {
             nameUILabel.text = actor.name
             characterUILabel.text = actor.character
             profileUIImageview.image = actor.profile
+            actor.profile = Actor.loadImage(at: actor.aux["profile_path"] as? String, resolution: "w342")
+            if actor.profile != nil{
+                profileUIImageview.image = actor.profile
+            }
         }
     }
     
