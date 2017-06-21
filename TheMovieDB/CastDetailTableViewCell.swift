@@ -29,10 +29,6 @@ class CastDetailTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         
         self.castCollectionView.showsVerticalScrollIndicator = false
         self.castCollectionView.showsHorizontalScrollIndicator = false
-        
-        print("Cast = \(cast.count)")
-        
-        // print("space = \(upcomingMoviesCollectionView.spa)")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
